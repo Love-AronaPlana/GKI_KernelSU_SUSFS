@@ -294,7 +294,7 @@ jobs:
       # Get the Latest Tag from GitHub
       - name: 生成和创建新标签
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ZZH_TOKEN }}
         run: |
             # Fetch the latest tag from GitHub (this is the latest tag based on the GitHub API)
             LATEST_TAG=$(gh api repos/$REPO_OWNER/$REPO_NAME/tags --jq '.[0].name')
@@ -332,7 +332,7 @@ jobs:
       - name: 动态上传发布资产
         run: |
           # Loop through all files in the downloaded-artifacts directory
-          for file in ./downloaded-artifacts/kernel-*/*; do
+          for file in ./downloaded-artifacts/*_kernel-*/*; do
               # Skip directories
               if [ -d "$file" ]; then
                   continue
